@@ -26,10 +26,10 @@ const Testimonials = () => {
     <section className="py-16 bg-white" id="testimonials">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1 rounded-full bg-brand-100 text-brand-600 font-medium text-sm mb-4">Testimonials</span>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">What Participants Are Saying</h2>
+          <span className="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-800 font-semibold text-sm mb-4">Testimonials</span>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">What Participants Are Saying</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Real experiences from volunteers and participants in our programs
+            Real experiences from volunteers and participants in our programs.
           </p>
         </div>
         
@@ -39,13 +39,13 @@ const Testimonials = () => {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.5 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-gray-50 p-6 rounded-xl shadow-md"
+              className="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-200"
             >
-              <div className="text-brand-500 text-4xl mb-4">"</div>
+              <div className="text-amber-500 text-4xl mb-4">"</div>
               <p className="text-gray-700 mb-6 italic">{testimonial.quote}</p>
-              <div className="border-t pt-4">
+              <div className="border-t border-gray-200 pt-4">
                 <p className="font-semibold text-gray-800">{testimonial.name}</p>
                 <p className="text-sm text-gray-600">{testimonial.role} • {testimonial.location}</p>
               </div>
@@ -60,8 +60,8 @@ const Testimonials = () => {
           transition={{ delay: 0.3 }}
           className="mt-12 text-center"
         >
-          <div className="inline-block bg-brand-50 px-6 py-3 rounded-lg text-gray-700">
-            <span className="font-medium">Join over 100+ volunteers who have transformed their careers while making a difference</span>
+          <div className="inline-block bg-blue-50 px-6 py-3 rounded-lg text-blue-800 border border-blue-200">
+            <span className="font-medium">Join over 100+ volunteers who have transformed their careers while making a difference.</span>
           </div>
         </motion.div>
       </div>

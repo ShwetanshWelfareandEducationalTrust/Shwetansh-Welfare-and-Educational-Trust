@@ -45,7 +45,7 @@ const OurServices = () => {
     <div className="bg-gray-50 py-16" id="services">
       <div className="container mx-auto px-4">
         <p className="text-center mb-2">
-          <span className="inline-block px-4 py-1 rounded-full bg-brand-100 text-brand-600 font-medium text-sm">
+          <span className="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-800 font-semibold text-sm">
             What We Offer
           </span>
         </p>
@@ -61,27 +61,19 @@ const OurServices = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           {services.map((service, index) => (
             <Link to={service.link} key={index} className="block group">
               <motion.div
                 variants={itemVariants}
-                className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl border-t-4 border-brand-500 transition-all relative"
+                className="bg-white p-8 rounded-xl shadow-sm hover:shadow-lg border-t-4 border-blue-600 transition-all duration-300 relative hover:-translate-y-1"
               >
-                {/* Mobile visual indicator that this is clickable */}
-                <div className="absolute top-4 right-4 md:hidden flex items-center text-brand-500 font-medium text-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                <div className="text-4xl mb-4 bg-blue-50 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center">{service.icon}</div>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800">{service.title}</h3>
                 <p className="text-gray-600 mb-6">{service.description}</p>
                 
-                {/* Learn More button/link for better affordance */}
-                <div className="flex items-center text-brand-600 font-medium group-hover:text-brand-700 transition-colors">
+                <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors">
                   <span>Learn More</span>
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 

@@ -13,30 +13,30 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-      {/* Background with diagonal stripes pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-500 via-brand-600 to-brand-700 opacity-90">
-        <div className="absolute inset-0" style={{ 
-          backgroundImage: `repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 20px, transparent 20px, transparent 40px)` 
+      {/* Background with a new dark theme gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-black opacity-95">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `repeating-linear-gradient(45deg, rgba(74, 85, 104, 0.07) 0px, rgba(74, 85, 104, 0.07) 20px, transparent 20px, transparent 40px)`
         }}></div>
       </div>
-      
-      {/* Circular shapes */}
-      <motion.div 
-        animate={{ 
+
+      {/* Circular shapes with a new accent color */}
+      <motion.div
+        animate={{
           scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
+          opacity: [0.1, 0.2, 0.1],
         }}
         transition={{ duration: 8, repeat: Infinity }}
-        className="absolute right-[10%] top-[20%] w-64 h-64 rounded-full bg-white opacity-30"
+        className="absolute right-[10%] top-[20%] w-64 h-64 rounded-full bg-teal-400"
       />
-      
-      <motion.div 
-        animate={{ 
+
+      <motion.div
+        animate={{
           scale: [1, 1.3, 1],
-          opacity: [0.2, 0.4, 0.2],
+          opacity: [0.05, 0.15, 0.05],
         }}
         transition={{ duration: 10, repeat: Infinity }}
-        className="absolute left-[5%] bottom-[10%] w-80 h-80 rounded-full bg-white opacity-20"
+        className="absolute left-[5%] bottom-[10%] w-80 h-80 rounded-full bg-teal-400"
       />
 
       <div className="container mx-auto px-4 h-screen flex flex-col justify-center relative z-10">
@@ -50,11 +50,11 @@ const Hero = () => {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               Shwetansh Welfare and <br />Educational Trust
             </h1>
-            <p className="text-xl md:text-2xl text-white opacity-90 italic mb-10">
+            <p className="text-xl md:text-2xl text-gray-300 opacity-90 italic mb-10">
               "Empowering Youth, Transforming Futures"
             </p>
-            <p className="text-lg text-white opacity-80 max-w-3xl mx-auto mb-10">
-              Join our government-registered organization committed to creating positive change through education, 
+            <p className="text-lg text-gray-400 opacity-80 max-w-3xl mx-auto mb-10">
+              Join our government-registered organization committed to creating positive change through education,
               welfare, and innovative community-based projects.
             </p>
           </motion.div>
@@ -69,7 +69,7 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-brand-600 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all"
+                className="bg-teal-400 text-gray-900 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-teal-300 hover:shadow-xl transition-all"
               >
                 Join Us
               </motion.button>
@@ -80,7 +80,7 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
               href="#about"
               onClick={handleScrollToAbout}
-              className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-brand-600 transition-all"
+              className="bg-transparent border-2 border-teal-400 text-teal-400 px-8 py-4 rounded-full font-bold text-lg hover:bg-teal-400 hover:text-gray-900 transition-all"
             >
               Explore Our Work
             </motion.a>
@@ -95,7 +95,7 @@ const Hero = () => {
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="text-white text-3xl"
+              className="text-gray-400 text-3xl"
             >
               ↓
             </motion.div>
