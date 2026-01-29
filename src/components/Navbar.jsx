@@ -95,6 +95,7 @@ const Navbar = () => {
           
           {/* Desktop menu with structured data markup */}
           <div className="hidden md:flex items-center space-x-6" itemScope itemType="http://schema.org/SiteNavigationElement">
+            {/* Services Dropdown */}
             <Link 
               to="/"
               className={`font-medium hover:text-brand-500 transition-colors ${
@@ -104,17 +105,7 @@ const Navbar = () => {
             >
               <span itemProp="name">Home</span>
             </Link>
-            <a 
-              href="/#about" 
-              className={`font-medium hover:text-brand-500 transition-colors ${
-                scrolled ? 'text-gray-700' : 'text-white hover:text-white/80'
-              }`}
-              itemProp="url"
-            >
-              <span itemProp="name">About SWET</span>
-            </a>
             
-            {/* Services Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button 
                 onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
@@ -188,6 +179,45 @@ const Navbar = () => {
               )}
             </div>
             
+            {/* Praxis Edu with full glowing button effect */}
+            <Link 
+              to="/praxis-edu" 
+              className="relative"
+              itemProp="url"
+            >
+              <motion.span 
+                className={`relative inline-block px-4 py-2 rounded-full font-medium transition-all ${
+                  scrolled 
+                    ? 'bg-brand-500 text-white shadow-lg' 
+                    : 'bg-white/10 text-white backdrop-blur-sm'
+                }`}
+                itemProp="name"
+                animate={{
+                  boxShadow: scrolled 
+                    ? [
+                        '0 0 20px rgba(79, 70, 229, 0.5)',
+                        '0 0 30px rgba(79, 70, 229, 0.7)',
+                        '0 0 20px rgba(79, 70, 229, 0.5)'
+                      ]
+                    : [
+                        '0 0 15px rgba(255, 255, 255, 0.3)',
+                        '0 0 25px rgba(255, 255, 255, 0.5)',
+                        '0 0 15px rgba(255, 255, 255, 0.3)'
+                      ]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                Praxis Edu
+                <span className="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-bold bg-white/20">
+                  New
+                </span>
+              </motion.span>
+            </Link>
+            
             <Link 
               to="/join-us" 
               className={`font-medium hover:text-brand-500 transition-colors ${
@@ -196,16 +226,6 @@ const Navbar = () => {
               itemProp="url"
             >
               <span itemProp="name">Join SWET</span>
-            </Link>
-            
-            <Link
-              to="/our-team"
-              className={`font-medium hover:text-brand-500 transition-colors ${
-                scrolled ? 'text-gray-700' : 'text-white hover:text-white/80'
-              }`}
-              itemProp="url"
-            >
-              <span itemProp="name">Our Team</span>
             </Link>
           
             <a 
@@ -231,6 +251,7 @@ const Navbar = () => {
             aria-labelledby="mobile-menu-button"
           >
             <div className="px-4 py-4 space-y-3">
+              {/* Mobile Services Dropdown */}
               <Link 
                 to="/" 
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 text-gray-700"
@@ -240,17 +261,6 @@ const Navbar = () => {
               >
                 <span itemProp="name">Home</span>
               </Link>
-              <a 
-                href="/#about" 
-                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 text-gray-700"
-                onClick={() => setIsOpen(false)}
-                role="menuitem"
-                itemProp="url"
-              >
-                <span itemProp="name">About SWET</span>
-              </a>
-              
-              {/* Mobile Services Dropdown */}
               <div className="block px-3 py-2 rounded-md" role="group" aria-labelledby="mobile-services-heading">
                 <p id="mobile-services-heading" className="text-base font-medium text-gray-700 mb-2">Our Services</p>
                 <div className="pl-4 space-y-2 border-l-2 border-gray-200">
@@ -293,6 +303,34 @@ const Navbar = () => {
                 </div>
               </div>
               
+              {/* Praxis Edu with glowing effect for mobile */}
+              <Link 
+                to="/praxis-edu" 
+                className="block px-3 py-2 rounded-md"
+                onClick={() => setIsOpen(false)}
+                role="menuitem"
+                itemProp="url"
+              >
+                <span 
+                  className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-lg font-medium shadow-lg"
+                  itemProp="name"
+                  style={{
+                    boxShadow: '0 0 20px rgba(79, 70, 229, 0.5)'
+                  }}
+                >
+                  <span className="flex items-center">
+                    Praxis Edu
+                    <span className="ml-2 inline-flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-white opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                    </span>
+                  </span>
+                  <span className="text-xs font-bold bg-white/20 px-2 py-1 rounded">
+                    New
+                  </span>
+                </span>
+              </Link>
+              
               <Link 
                 to="/join-us" 
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 text-gray-700"
@@ -301,16 +339,6 @@ const Navbar = () => {
                 itemProp="url"
               >
                 <span itemProp="name">Join SWET</span>
-              </Link>
-            
-              <Link
-                to="/our-team"
-                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 text-gray-700"
-                onClick={() => setIsOpen(false)}
-                role="menuitem"
-                itemProp="url"
-              >
-                <span itemProp="name">Our Team</span>
               </Link>
               
               <a 

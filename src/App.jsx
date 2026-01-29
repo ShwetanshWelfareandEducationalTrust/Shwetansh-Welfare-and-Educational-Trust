@@ -17,6 +17,7 @@ import JoinUs from './components/JoinUs'; // ✅ Import JoinUs
 import ScrollToTop from './components/ScrollToTop'; // ✅ Import ScrollToTop
 import OurTeamPage from './components/OurTeamPage'; // ✅ Import Contact component
 import Training from './components/Training';
+import PraxisEdu from './components/PraxisEdu';
 
 // Homepage layout
 function Home() {
@@ -51,6 +52,7 @@ function App() {
       <Route path="/join-us" element={<JoinUs />} /> {/* ✅ Added JoinUs route */}
       <Route path="/our-team" element={<OurTeamPage />} />
       <Route path="/training" element={<Training />} />
+      <Route path="/praxis-edu" element={<PraxisEdu />} />
     </Routes>
   );
 }
