@@ -1,0 +1,1392 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1.0" name="viewport" />
+    <title>SWET AI LABS | Autonomous Intelligence</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"> </script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="tailwind-config.js"> </script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        .no-scroll { overflow: hidden !important; }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+    </style>
+</head>
+
+<body class="font-display bg-bg-light text-charcoal antialiased overflow-x-hidden"> <!-- Innovative Glass Cursor -->
+
+    <!-- 3D PRELOADER -->
+    <div id="premium-preloader" class="fixed inset-0 z-[99999] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out" style="background: radial-gradient(circle at center, #ffffff 0%, #ebf0ea 100%);">
+        <!-- Three.js Canvas Container -->
+        <div id="preloader-canvas-container" class="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none"></div>
+        
+        <!-- UI Overlay -->
+        <div id="preloader-ui" class="relative z-10 flex flex-col items-center justify-center mt-32 opacity-0 transition-opacity duration-1000 ease-in-out">
+            <h1 class="text-3xl md:text-5xl font-bold text-charcoal tracking-tight mb-8 drop-shadow-sm font-display text-center">Welcome to <span class="text-primary">SWET</span></h1>
+            
+            <!-- Button wrapper for exit animation -->
+            <div id="preloader-btn-wrapper" class="transition-all duration-700 ease-in-out transform translate-y-4 opacity-0">
+                <button id="preloader-enter-btn" class="px-8 py-4 bg-charcoal text-white rounded-full font-medium tracking-wide shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group pointer-events-auto cursor-pointer">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                    <span class="relative z-10 pointer-events-none">Enter the Platform</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cursor-dot"> </div>
+    <div id="cursor-aura"> </div> <!-- NAV -->
+    <nav id="navbar"
+        class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-charcoal/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between"> <a href="#hero"
+                class="flex items-center gap-3">
+                <div class="text-primary size-8"> <img src="/swet.png" alt="SWET Logo" class="w-full h-full object-contain" /> </div> <span class="text-xl font-bold tracking-tight">SWET AI LABS</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-charcoal/70"> <a href="services.html"
+                    class="nav-link hover:text-primary transition-colors"> Services </a> <a href="#benefits"
+                    class="nav-link hover:text-primary transition-colors"> Solutions </a> <a href="#roadmap"
+                    class="nav-link hover:text-primary transition-colors"> Roadmap </a> <a href="#pricing"
+                    class="nav-link text-primary transition-colors"> Pricing </a> <a href="#contact"
+                    class="nav-link hover:text-primary transition-colors"> Contact </a> </div>
+            <div class="flex items-center gap-3"> <button onclick="openModal('login-modal')"
+                    class="hidden sm:flex items-center justify-center h-10 px-5 rounded-full text-sm font-bold transition-all btn-glass text-charcoal">
+                    Log In </button> <button onclick="openModal('signup-modal')"
+                    class="flex items-center justify-center h-10 px-5 rounded-full text-sm font-bold hover:scale-105 active:scale-95 transition-all bg-charcoal text-white hover:bg-charcoal/90">
+                    Get Started </button> </div>
+        </div>
+    </nav> <!-- HERO -->
+    <section id="hero"
+        class="pearlescent min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-16 relative overflow-hidden">
+        <!-- Background Comets Canvas --> <canvas id="comet-canvas"
+            class="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-60"></canvas>
+        <div class="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-gold/5 blur-[120px] rounded-full pointer-events-none">
+        </div>
+        <div class="max-w-5xl text-center z-10 reveal">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 border border-white text-xs font-bold uppercase tracking-widest text-charcoal/50 mb-10">
+                <span class="relative flex h-2 w-2"><span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span
+                        class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span></span> The Future of
+                Enterprise Automation </div>
+            <h1
+                class="text-charcoal text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-[-0.04em] mb-8 pb-2">
+                Autonomous <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-gold relative inline-block">
+                    AI Agents </span> <br />That Run Your Business </h1>
+            <p class="text-charcoal/55 text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto mb-12">
+                Experience the next generation of business automation. Our premium AI agents are engineered for
+                high-performance enterprises seeking peak efficiency. </p>
+            <div class="flex flex-wrap gap-4 justify-center"> <button onclick="openModal('signup-modal')"
+                    class="flex min-w-[180px] items-center justify-center rounded-full h-14 px-8 text-base font-bold hover:shadow-charcoal/40 transition-all bg-charcoal text-white hover:bg-charcoal/90">
+                    Get Started Free </button> <button onclick="openModal('demo-modal')"
+                    class="flex min-w-[180px] items-center justify-center rounded-full h-14 px-8 text-charcoal text-base font-bold transition-all btn-glass text-charcoal">
+                    Watch Demo </button> </div>
+        </div>
+        <div class="mt-20 w-full max-w-[1000px] mx-auto reveal float mb-20">
+    <div class="glass rounded-3xl p-4 md:p-6 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-white/60 bg-white/30 backdrop-blur-[40px] relative z-10">
+        <div class="bg-[#fbfbfb] rounded-2xl overflow-hidden shadow-inner border border-white/80">
+            
+            <!-- Browser Header -->
+            <div class="h-14 bg-white/70 backdrop-blur-md flex items-center px-6 gap-3">
+                <div class="w-3.5 h-3.5 rounded-full bg-[#e2e8f0]"></div>
+                <div class="w-3.5 h-3.5 rounded-full bg-[#e2e8f0]"></div>
+                <div class="w-3.5 h-3.5 rounded-full bg-[#e2e8f0]"></div>
+                
+                <div class="w-10 h-10 rounded-full bg-white ml-2 flex items-center justify-center relative shadow-sm border border-[#e2e8f0]/50">
+                    <div class="w-2.5 h-2.5 rounded-full bg-primary absolute top-[3px] right-[3px]"></div>
+                </div>
+                
+                <div class="flex-1 flex justify-end gap-3 items-center">
+                    <div class="w-32 h-3.5 rounded-full bg-[#f1f5f9]"></div>
+                    <div class="w-10 h-10 rounded-full bg-[#cbd5e1]"></div>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-6 md:p-8 bg-[#fdfdfd]">
+                <div class="flex flex-col md:flex-row gap-6">
+                    
+                    <!-- Left Sidebar (Placeholder components) -->
+                    <div class="hidden md:flex flex-col gap-4 w-1/4 pt-2">
+                        <div class="h-12 w-full bg-[#e2e8f0]/60 rounded-xl"></div>
+                        <div class="h-12 w-4/5 bg-[#e2e8f0]/60 rounded-xl"></div>
+                        <div class="h-12 w-full bg-[#e2e8f0]/60 rounded-xl"></div>
+                    </div>
+                    
+                    <!-- Main Dashboard Area -->
+                    <div class="w-full md:w-3/4 flex flex-col gap-6">
+                        
+                        <!-- Top Row -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Agent Efficiency Card -->
+                            <div class="bg-white rounded-[20px] p-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] border border-[#f1f5f9] flex flex-col relative h-[220px]">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-[0.15em] font-sans">Agent Efficiency</span>
+                                    <span class="bg-[#dcfce7] text-[#166534] text-[10px] font-bold px-3 py-1 rounded-full">+12.5%</span>
+                                </div>
+                                <div class="text-[42px] leading-tight font-bold text-charcoal mb-4">98.4%</div>
+                                
+                                <div class="mt-auto h-20 relative -mx-2">
+                                    <svg class="w-full h-full overflow-visible" viewBox="0 0 150 60" preserveAspectRatio="none">
+                                        <!-- Custom continuous line path mimicking the screenshot -->
+                                        <path d="M 5 50 Q 20 20 35 50 T 70 15 T 100 50" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M 125 15 L 132 40" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- Neural Load Card -->
+                            <div class="bg-white rounded-[20px] p-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] border border-[#f1f5f9] flex flex-col relative h-[220px]">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-[0.15em] font-sans">Neural Load</span>
+                                    <span class="bg-[#e0e7ff] text-[#4f46e5] text-[10px] font-bold px-3 py-1 rounded-full">Stable</span>
+                                </div>
+                                <div class="text-[42px] leading-tight font-bold text-charcoal mb-4">2.4k<span class="text-sm font-medium text-slate-400">/hr</span></div>
+                                
+                                <div class="mt-auto h-[72px] grid grid-cols-4 gap-3 items-end">
+                                    <div class="w-full bg-[#f1f5f9] h-[30%] rounded-[4px]"></div>
+                                    <div class="w-full bg-[#f1f5f9] h-[45%] rounded-[4px]"></div>
+                                    <div class="w-full bg-[#93c5fd] h-[95%] rounded-[4px] hover:bg-[#3b82f6] transition-colors cursor-pointer"></div>
+                                    <div class="w-full bg-[#f1f5f9] h-[35%] rounded-[4px]"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Row -->
+                        <div class="bg-white rounded-[20px] p-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] border border-[#f1f5f9]">
+                            <div class="flex justify-between items-center mb-5">
+                                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-[0.15em]">Active Neural Streams</span>
+                                <a href="#" class="text-[#2563eb] text-[13px] font-bold hover:underline">Manage All</a>
+                            </div>
+                            
+                            <div class="flex flex-col gap-3">
+                                <!-- Stream 1 -->
+                                <div class="bg-[#fafafa] rounded-xl p-3.5 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-full bg-[#e0e7ff] text-[#4f46e5] flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-[18px]">language</span>
+                                    </div>
+                                    <div class="text-[14px] font-bold text-charcoal flex-1 tracking-tight">Data Processor Agent #104</div>
+                                    <div class="w-[84px] h-[6px] bg-slate-200 rounded-full overflow-hidden shrink-0 mt-1">
+                                        <div class="bg-[#2563eb] h-full w-[85%] rounded-full"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Stream 2 -->
+                                <div class="bg-[#fafafa] rounded-xl p-3.5 flex items-center gap-4">
+                                    <div class="w-8 h-8 rounded-full bg-[#dcfce7] text-[#166534] flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                                    </div>
+                                    <div class="text-[14px] font-bold text-charcoal flex-1 tracking-tight">Sentiment Analysis Node</div>
+                                    <div class="w-[84px] h-[6px] bg-slate-200 rounded-full overflow-hidden shrink-0 mt-1">
+                                        <div class="bg-[#10b981] h-full w-[70%] rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+    </div></section> <!-- SERVICES -->
+    <section id="services" class="py-32 bg-white/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-charcoal/40 text-xs font-bold uppercase tracking-[0.2em] mb-3"> Core Services </h2>
+                <h3 class="text-charcoal text-4xl md:text-5xl font-bold tracking-tight mb-4"> Elite Autonomous Solutions
+                </h3>
+                <div class="w-16 h-1 bg-primary/20 rounded-full mx-auto"> </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div
+                    class="glass p-10 rounded-3xl flex flex-col gap-5 group hover:-translate-y-2 transition-all duration-300 reveal">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-charcoal group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-3xl">analytics</span> </div>
+                    <div>
+                        <h4 class="text-charcoal text-xl font-bold mb-2"> Strategic Analytics </h4>
+                        <p class="text-charcoal/55 leading-relaxed"> Deep data insights powered by neural networks,
+                            providing real-time competitive intelligence for your leadership team. </p>
+                    </div>
+                </div>
+                <div class="glass p-10 rounded-3xl flex flex-col gap-5 group hover:-translate-y-2 transition-all duration-300 reveal"
+                    style="transition-delay: 0.1s">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-charcoal group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-3xl">psychology</span> </div>
+                    <div>
+                        <h4 class="text-charcoal text-xl font-bold mb-2"> Customer Success </h4>
+                        <p class="text-charcoal/55 leading-relaxed"> 24/7 autonomous support agents with human-like
+                            empathy and instant resolution capabilities for complex client needs. </p>
+                    </div>
+                </div>
+                <div class="glass p-10 rounded-3xl flex flex-col gap-5 group hover:-translate-y-2 transition-all duration-300 reveal"
+                    style="transition-delay: 0.2s">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-charcoal group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-3xl">trending_up</span> </div>
+                    <div>
+                        <h4 class="text-charcoal text-xl font-bold mb-2"> Automated Growth </h4>
+                        <p class="text-charcoal/55 leading-relaxed"> Scalable lead generation and market expansion
+                            workflows that operate autonomously across all digital channels. </p>
+                    </div>
+                </div>
+                <div class="glass p-10 rounded-3xl flex flex-col gap-5 group hover:-translate-y-2 transition-all duration-300 reveal"
+                    style="transition-delay: 0.05s">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-charcoal group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-3xl">account_balance_wallet</span> </div>
+                    <div>
+                        <h4 class="text-charcoal text-xl font-bold mb-2"> Financial Oversight </h4>
+                        <p class="text-charcoal/55 leading-relaxed"> Real-time budget optimization and predictive
+                            forecasting to ensure maximum ROI on every operational dollar. </p>
+                    </div>
+                </div>
+                <div class="glass p-10 rounded-3xl flex flex-col gap-5 group hover:-translate-y-2 transition-all duration-300 reveal"
+                    style="transition-delay: 0.15s">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-charcoal group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-3xl">settings_input_component</span> </div>
+                    <div>
+                        <h4 class="text-charcoal text-xl font-bold mb-2"> Operations Control </h4>
+                        <p class="text-charcoal/55 leading-relaxed"> Streamlined logistics and supply chain automation,
+                            eliminating manual bottlenecks in your fulfillment processes. </p>
+                    </div>
+                </div>
+                <div class="glass p-10 rounded-3xl flex flex-col gap-5 group hover:-translate-y-2 transition-all duration-300 reveal"
+                    style="transition-delay: 0.25s">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-charcoal group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-3xl">badge</span> </div>
+                    <div>
+                        <h4 class="text-charcoal text-xl font-bold mb-2"> Talent Management </h4>
+                        <p class="text-charcoal/55 leading-relaxed"> Smarter recruitment and automated employee
+                            engagement systems designed to retain your high-tier performers. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- STATS (Infinite Scroll) -->
+    <section class="py-12 bg-charcoal text-white overflow-hidden border-y border-white/5 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-charcoal via-transparent to-charcoal z-10 pointer-events-none w-full"></div>
+        <div class="flex whitespace-nowrap gap-16 md:gap-32 w-max animate-[scroll_40s_linear_infinite] hover:[animation-play-state:paused] py-4">
+            <!-- Set 1 -->
+            <div class="flex items-center gap-16 md:gap-32">
+                <div class="flex flex-col items-center gap-1"> <span class="text-4xl md:text-5xl font-bold">12,482</span><span class="text-white/40 text-xs md:text-sm font-medium uppercase tracking-widest mt-1">Active Agents</span> </div>
+                <div class="flex items-center text-white/10"><span class="material-symbols-outlined">network_node</span></div>
+                <div class="flex flex-col items-center gap-1"> <span class="text-4xl md:text-5xl font-bold">1.2M+</span><span class="text-white/40 text-xs md:text-sm font-medium uppercase tracking-widest mt-1">Tasks Completed</span> </div>
+                <div class="flex items-center text-white/10"><span class="material-symbols-outlined">network_node</span></div>
+                <div class="flex flex-col items-center gap-1"> <span class="text-4xl md:text-5xl font-bold">64%</span><span class="text-white/40 text-xs md:text-sm font-medium uppercase tracking-widest mt-1">Cost Savings</span> </div>
+                <div class="flex items-center text-white/10"><span class="material-symbols-outlined">network_node</span></div>
+                <div class="flex flex-col items-center gap-1"> <span class="text-4xl md:text-5xl font-bold">42ms</span><span class="text-white/40 text-xs md:text-sm font-medium uppercase tracking-widest mt-1">Avg Response</span> </div>
+            </div>
+            <!-- Set 2 (Duplicate for continuous scroll) -->
+            <div class="flex items-center gap-16 md:gap-32" aria-hidden="true">
+                <div class="flex items-center text-white/10"><span class="material-symbols-outlined">network_node</span></div>
+                <div class="flex flex-col items-center gap-1"> <span class="text-4xl md:text-5xl font-bold">12,482</span><span class="text-white/40 text-xs md:text-sm font-medium uppercase tracking-widest mt-1">Active Agents</span> </div>
+                <div class="flex items-center text-white/10"><span class="material-symbols-outlined">network_node</span></div>
+                <div class="flex flex-col items-center gap-1"> <span class="text-4xl md:text-5xl font-bold">1.2M+</span><span class="text-white/40 text-xs md:text-sm font-medium uppercase tracking-widest mt-1">Tasks Completed</span> </div>
+                <div class="flex items-center text-white/10"><span class="material-symbols-outlined">network_node</span></div>
+                <div class="flex flex-col items-center gap-1"> <span class="text-4xl md:text-5xl font-bold">64%</span><span class="text-white/40 text-xs md:text-sm font-medium uppercase tracking-widest mt-1">Cost Savings</span> </div>
+                <div class="flex items-center text-white/10"><span class="material-symbols-outlined">network_node</span></div>
+                <div class="flex flex-col items-center gap-1"> <span class="text-4xl md:text-5xl font-bold">42ms</span><span class="text-white/40 text-xs md:text-sm font-medium uppercase tracking-widest mt-1">Avg Response</span> </div>
+            </div>
+            <!-- Set 3 (Extra buffer) -->
+            <div class="flex items-center gap-16 md:gap-32 px-16 md:px-32" aria-hidden="true">
+                <div class="flex items-center text-white/10"><span class="material-symbols-outlined">network_node</span></div>
+                <div class="flex flex-col items-center gap-1"> <span class="text-4xl md:text-5xl font-bold">12,482</span><span class="text-white/40 text-xs md:text-sm font-medium uppercase tracking-widest mt-1">Active Agents</span> </div>
+            </div>
+        </div>
+        <!-- Styles for scroll animation -->
+        <style>
+            @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(calc(-50% - 1rem)); } 
+            }
+        </style>
+    </section> <!-- BENEFITS -->
+    <section id="benefits" class="py-32 bg-bg-light">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <div class="mb-16 max-w-2xl reveal"> <span
+                    class="text-primary font-bold tracking-widest text-xs uppercase">The Future of Agency</span>
+                <h2 class="text-charcoal text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight mt-3 mb-4"> Why
+                    Businesses Choose SWET AI LABS </h2>
+                <p class="text-charcoal/55 text-lg leading-relaxed"> Deploy autonomous neural agents that handle complex
+                    workflows, learn your business logic, and scale without overhead. </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
+                <div
+                    class="group flex flex-col gap-5 rounded-2xl border border-white/50 bg-white/40 p-8 backdrop-blur-xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 reveal">
+                    <div
+                        class="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-[28px]">rocket_launch</span> </div>
+                    <div>
+                        <h3 class="text-charcoal text-xl font-bold mb-2"> Autonomous Scaling </h3>
+                        <p class="text-charcoal/55 leading-relaxed"> Agent workflows that expand dynamically with your
+                            demand, requiring zero manual intervention. </p>
+                    </div>
+                </div>
+                <div class="group flex flex-col gap-5 rounded-2xl border border-white/50 bg-white/40 p-8 backdrop-blur-xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 reveal"
+                    style="transition-delay: 0.1s">
+                    <div
+                        class="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-[28px]">security</span> </div>
+                    <div>
+                        <h3 class="text-charcoal text-xl font-bold mb-2"> Neural Security </h3>
+                        <p class="text-charcoal/55 leading-relaxed"> Encrypted processing layers ensure your proprietary
+                            data never leaves your private neural instance. </p>
+                    </div>
+                </div>
+                <div class="group flex flex-col gap-5 rounded-2xl border border-white/50 bg-white/40 p-8 backdrop-blur-xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 reveal"
+                    style="transition-delay: 0.2s">
+                    <div
+                        class="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-[28px]">hub</span> </div>
+                    <div>
+                        <h3 class="text-charcoal text-xl font-bold mb-2"> Native Integrations </h3>
+                        <p class="text-charcoal/55 leading-relaxed"> One-click connections to your CRM, ERP, and
+                            communication stacks via advanced API bridging. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/3 flex flex-col gap-6 reveal-left">
+                    <h2 class="text-charcoal text-3xl font-bold tracking-tight"> AI Command Center </h2>
+                    <p class="text-charcoal/55 text-lg leading-relaxed"> A sophisticated, minimalist interface designed
+                        for managing your autonomous workforce with precision and clarity. </p>
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-4">
+                            <div class="mt-1 text-primary flex-shrink-0"> <span
+                                    class="material-symbols-outlined">check_circle</span> </div>
+                            <div>
+                                <h4 class="font-bold text-charcoal">Real-time Insights</h4>
+                                <p class="text-sm text-charcoal/50"> Monitor neural processing states and agent
+                                    performance instantly. </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="mt-1 text-primary flex-shrink-0"> <span
+                                    class="material-symbols-outlined">check_circle</span> </div>
+                            <div>
+                                <h4 class="font-bold text-charcoal">Task Automation</h4>
+                                <p class="text-sm text-charcoal/50"> Visualize complex chain-of-thought processing as it
+                                    happens. </p>
+                            </div>
+                        </div>
+                    </div> <button onclick="openModal('demo-modal')"
+                        class="w-fit flex items-center gap-2 rounded-full h-12 px-8 text-sm font-bold transition-all btn-glass text-charcoal">
+                        View Full Dashboard <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                </div>
+                <div class="w-full lg:w-2/3 reveal-right">
+                    <div class="rounded-2xl overflow-hidden border border-charcoal/5 shadow-2xl bg-white p-3">
+                        <div class="bg-[#f8f9fb] rounded-xl h-[420px] flex flex-col overflow-hidden">
+                            <div class="h-12 border-b border-slate-100 bg-white px-5 flex items-center justify-between">
+                                <div class="flex gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-slate-200"> </div>
+                                    <div class="w-3 h-3 rounded-full bg-slate-200"> </div>
+                                    <div class="w-3 h-3 rounded-full bg-slate-200"> </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-32 h-2.5 rounded-full bg-slate-100"> </div>
+                                    <div class="w-8 h-8 rounded-full bg-primary/20"> </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-1 p-5 gap-5">
+                                <div class="w-40 hidden md:flex flex-col gap-3">
+                                    <div class="w-full h-8 rounded-lg bg-primary/10"> </div>
+                                    <div class="w-3/4 h-7 rounded-lg bg-slate-200/60"> </div>
+                                    <div class="w-5/6 h-7 rounded-lg bg-slate-200/60"> </div>
+                                </div>
+                                <div class="flex-1 bg-white p-0 rounded-xl border border-slate-100 shadow-sm overflow-hidden relative flex flex-col">
+                                    <!-- Toolbar -->
+                                    <div class="h-10 border-b border-slate-100 px-4 flex items-center justify-between bg-slate-50 shrink-0 z-20">
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Live Agent Workflow</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="px-2 py-0.5 rounded text-[9px] font-bold bg-emerald-100 text-emerald-600 flex items-center gap-1.5 shadow-sm">
+                                                <div class="size-1.5 rounded-full bg-emerald-500 animate-pulse"></div> Active
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Editor Canvas -->
+                                    <div class="flex-1 relative w-full bg-[#f8fafc] overflow-hidden" style="background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px); background-size: 24px 24px;">
+                                        <!-- Connectors SVG -->
+                                        <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style="z-index: 0;">
+                                            <defs>
+                                                <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                    <stop offset="0%" stop-color="#94a3b8" />
+                                                    <stop offset="100%" stop-color="#818cf8" />
+                                                </linearGradient>
+                                                <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                    <stop offset="0%" stop-color="#818cf8" />
+                                                    <stop offset="100%" stop-color="#94a3b8" />
+                                                </linearGradient>
+                                                <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                    <stop offset="0%" stop-color="#818cf8" />
+                                                    <stop offset="100%" stop-color="#10b981" />
+                                                </linearGradient>
+                                            </defs>
+                                            
+                                            <!-- Path Lead -> Qualify -->
+                                            <path d="M 10,20 C 25,20 20,40 35,40" fill="none" stroke="url(#g1)" stroke-width="0.5" vector-effect="non-scaling-stroke" />
+                                            <!-- Path Qualify -> CRM -->
+                                            <path d="M 35,40 C 60,40 50,15 70,15" fill="none" stroke="url(#g2)" stroke-width="0.5" vector-effect="non-scaling-stroke" />
+                                            <!-- Path Qualify -> Email -->
+                                            <path d="M 35,40 C 60,40 50,65 70,65" fill="none" stroke="url(#g3)" stroke-width="0.75" stroke-dasharray="2" vector-effect="non-scaling-stroke" class="animate-[pulse_2s_ease-in-out_infinite]" />
+                                            
+                                            <!-- Dot Animation -->
+                                            <circle cx="22" cy="30" r="1.5" fill="#818cf8" class="animate-pulse" />
+                                        </svg>
+
+                                        <!-- Node 1: Webhook -->
+                                        <div class="absolute top-[10%] left-[2%] bg-white border border-slate-200 rounded-lg p-3 shadow-md w-28 md:w-32 z-10 transition-colors cursor-pointer hover:border-slate-300">
+                                            <div class="flex items-center gap-2 mb-2">
+                                                <div class="size-6 rounded-md bg-rose-50 text-rose-500 flex items-center justify-center shrink-0 shadow-sm">
+                                                    <span class="material-symbols-outlined text-[14px]">line_start</span>
+                                                </div>
+                                                <div class="text-[9px] md:text-[10px] font-bold text-slate-700 leading-tight">Lead Capture</div>
+                                            </div>
+                                            <div class="text-[8px] text-slate-400 font-medium tracking-wide">Website Form</div>
+                                        </div>
+
+                                        <!-- Node 2: AI Processor -->
+                                        <div class="absolute top-[34%] left-[28%] bg-white border-2 border-primary rounded-lg p-3 shadow-xl w-32 md:w-36 z-10">
+                                            <div class="flex items-center gap-2 mb-2">
+                                                <div class="size-6 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0 relative shadow-sm">
+                                                    <span class="material-symbols-outlined text-[14px]">smart_toy</span>
+                                                    <span class="absolute -top-1 -right-1 flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span></span>
+                                                </div>
+                                                <div class="text-[9px] md:text-[10px] font-bold text-slate-700 leading-tight">Neural Qualify</div>
+                                            </div>
+                                            <div class="text-[8px] text-primary font-bold tracking-wide">Processing Data...</div>
+                                        </div>
+
+                                        <!-- Node 3: CRM update -->
+                                        <div class="absolute top-[5%] right-[2%] bg-white border border-slate-200 rounded-lg p-3 shadow-md w-28 md:w-32 z-10 opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+                                            <div class="flex items-center gap-2 mb-2">
+                                                <div class="size-6 rounded-md bg-slate-50 border border-slate-100 text-slate-500 flex items-center justify-center shrink-0">
+                                                    <span class="material-symbols-outlined text-[14px]">database</span>
+                                                </div>
+                                                <div class="text-[9px] md:text-[10px] font-bold text-slate-700 leading-tight">Update CRM</div>
+                                            </div>
+                                            <div class="text-[8px] text-slate-400 font-medium tracking-wide">Synced to HubSpot</div>
+                                        </div>
+
+                                        <!-- Node 4: Email Outreach -->
+                                        <div class="absolute top-[55%] right-[2%] bg-white border border-emerald-200 rounded-lg p-3 shadow-md w-28 md:w-32 z-10 cursor-pointer">
+                                            <div class="flex items-center gap-2 mb-2">
+                                                <div class="size-6 rounded-md bg-emerald-50 border border-emerald-100 text-emerald-500 flex items-center justify-center shrink-0 shadow-sm">
+                                                    <span class="material-symbols-outlined text-[14px]">forward_to_inbox</span>
+                                                </div>
+                                                <div class="text-[9px] md:text-[10px] font-bold text-slate-700 leading-tight">Sales Outreach</div>
+                                            </div>
+                                            <div class="text-[8px] text-emerald-600 font-bold tracking-wide">Drafting Email...</div>
+                                        </div>
+                                        
+                                        <!-- Animated Log Terminal -->
+                                        <div class="absolute bottom-2 left-2 right-2 bg-slate-900/95 backdrop-blur-md rounded-lg overflow-hidden flex flex-col p-3 z-20 font-mono text-[8.5px] md:text-[9.5px] leading-relaxed border border-slate-800 shadow-2xl">
+                                            <div class="flex gap-2">
+                                                <span class="text-slate-500 shrink-0">14:02:01</span>
+                                                <span class="text-slate-300 truncate">[AGENT] Analyzing core lead parameters...</span>
+                                            </div>
+                                            <div class="flex gap-2">
+                                                <span class="text-slate-500 shrink-0">14:02:05</span>
+                                                <span class="text-emerald-400 font-bold truncate">[SUCCESS] Lead qualified with score: 92%</span>
+                                            </div>
+                                            <div class="flex gap-2 relative">
+                                                <span class="text-slate-500 shrink-0">14:02:06</span>
+                                                <span class="text-indigo-300 truncate">>> Dispatching email generation node<span class="animate-pulse text-white">_</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+<!-- ROADMAP -->
+<section id="roadmap" class="py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-3xl mb-16 reveal"> <span
+                class="inline-block py-1 px-3 rounded-full bg-cream border border-charcoal/10 text-xs font-bold tracking-widest uppercase text-slate-500 mb-5">Pipeline
+                2026</span>
+            <h2 class="text-5xl md:text-6xl font-bold text-charcoal leading-[1.1] mb-6"> Architecting the future of
+                <span class="text-primary">autonomous</span> intelligence. </h2>
+            <p class="text-xl text-slate-500 font-light leading-relaxed"> Our upcoming suite of specialized agents is
+                designed to handle the heavy lifting. </p>
+        </div>
+        <div class="mb-20">
+            <div class="flex items-end justify-between mb-10">
+                <div>
+                    <h3 class="text-3xl font-bold text-charcoal mb-1"> Upcoming Services </h3>
+                    <p class="text-slate-500"> Scheduled for Q3–Q4 deployment. </p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="frosted p-8 rounded-xl flex flex-col gap-5 group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 reveal">
+                    <div class="w-full aspect-[4/3] bg-slate-100 rounded-lg overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"> </div>
+                        <div class="absolute top-4 left-4"> <span
+                                class="px-3 py-1 bg-white/90 text-[10px] font-bold uppercase tracking-tight rounded text-charcoal">Pre-Alpha</span>
+                        </div>
+                        <div
+                            class="w-full h-full bg-gradient-to-br from-slate-200 to-slate-100 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-6xl text-slate-300">person_pin</span> </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-charcoal mb-2">AI HR Agent</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-5"> Automated talent sourcing, initial
+                            screening, and seamless onboarding workflows that adapt to your culture. </p> <button
+                            onclick="openModal('waitlist-modal')"
+                            class="w-full py-3 rounded-lg text-sm font-bold transition-colors flex items-center justify-center gap-2 bg-charcoal text-white hover:bg-charcoal/90">
+                            Join Waitlist <span class="material-symbols-outlined text-sm">arrow_forward</span> </button>
+                    </div>
+                </div>
+                <div class="frosted p-8 rounded-xl flex flex-col gap-5 group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 reveal"
+                    style="transition-delay: 0.1s">
+                    <div class="w-full aspect-[4/3] bg-slate-100 rounded-lg overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"> </div>
+                        <div class="absolute top-4 left-4"> <span
+                                class="px-3 py-1 bg-white/90 text-[10px] font-bold uppercase tracking-tight rounded text-charcoal">Beta
+                                Testing</span> </div>
+                        <div
+                            class="w-full h-full bg-gradient-to-br from-blue-100 to-slate-100 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-6xl text-blue-200">contact_page</span> </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-charcoal mb-2">CRM Copilot</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-5"> Real-time lead scoring and automated
+                            follow-ups that sound human, keeping your pipeline moving 24/7. </p> <button
+                            onclick="openModal('waitlist-modal')"
+                            class="w-full py-3 rounded-lg text-sm font-bold transition-colors flex items-center justify-center gap-2 bg-charcoal text-white hover:bg-charcoal/90">
+                            Join Waitlist <span class="material-symbols-outlined text-sm">arrow_forward</span> </button>
+                    </div>
+                </div>
+                <div class="frosted p-8 rounded-xl flex flex-col gap-5 group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 reveal"
+                    style="transition-delay: 0.2s">
+                    <div class="w-full aspect-[4/3] bg-slate-100 rounded-lg overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent"> </div>
+                        <div class="absolute top-4 left-4"> <span
+                                class="px-3 py-1 bg-white/90 text-[10px] font-bold uppercase tracking-tight rounded text-charcoal">Development</span>
+                        </div>
+                        <div
+                            class="w-full h-full bg-gradient-to-br from-indigo-100 to-slate-100 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-6xl text-indigo-200">code</span> </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-charcoal mb-2">Autonomous Dev</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-5"> Self-healing code and automated PR
+                            reviews that understand your entire architecture and tech debt. </p> <button
+                            onclick="openModal('waitlist-modal')"
+                            class="w-full py-3 rounded-lg text-sm font-bold transition-colors flex items-center justify-center gap-2 bg-charcoal text-white hover:bg-charcoal/90">
+                            Join Waitlist <span class="material-symbols-outlined text-sm">arrow_forward</span> </button>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- HOW IT WORKS -->
+        <div>
+            <div class="mb-20 text-center reveal">
+                <h3 class="text-4xl font-bold text-charcoal mb-4"> The Implementation Framework </h3>
+                <p class="text-slate-500 max-w-2xl mx-auto text-lg"> Four precise steps to transition your business into
+                    an AI-augmented powerhouse. </p>
+            </div>
+            <div class="relative">
+                <div class="absolute top-10 left-0 w-full h-[1px] bg-charcoal/5 hidden md:block z-0"> </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+                    <div class="flex flex-col items-center md:items-start text-center md:text-left group reveal">
+                        <div
+                            class="w-20 h-20 bg-white border-2 border-charcoal/10 rounded-full flex items-center justify-center mb-7 group-hover:border-primary transition-colors duration-500 shadow-sm">
+                            <span
+                                class="material-symbols-outlined text-charcoal text-3xl group-hover:text-primary transition-colors">hub</span>
+                        </div>
+                        <h5 class="text-xl font-bold text-charcoal mb-3">Connect Data</h5>
+                        <p class="text-slate-500 leading-relaxed text-sm"> Integrate your existing cloud infrastructure,
+                            databases, and communication tools with one click. </p>
+                    </div>
+                    <div class="flex flex-col items-center md:items-start text-center md:text-left group reveal"
+                        style="transition-delay: 0.1s">
+                        <div
+                            class="w-20 h-20 bg-white border-2 border-charcoal/10 rounded-full flex items-center justify-center mb-7 group-hover:border-primary transition-colors duration-500 shadow-sm">
+                            <span
+                                class="material-symbols-outlined text-charcoal text-3xl group-hover:text-primary transition-colors">track_changes</span>
+                        </div>
+                        <h5 class="text-xl font-bold text-charcoal mb-3">Define Goals</h5>
+                        <p class="text-slate-500 leading-relaxed text-sm"> Use our natural language interface to set
+                            operational boundaries and specific performance KPIs. </p>
+                    </div>
+                    <div class="flex flex-col items-center md:items-start text-center md:text-left group reveal"
+                        style="transition-delay: 0.2s">
+                        <div
+                            class="w-20 h-20 bg-white border-2 border-charcoal/10 rounded-full flex items-center justify-center mb-7 group-hover:border-primary transition-colors duration-500 shadow-sm">
+                            <span
+                                class="material-symbols-outlined text-charcoal text-3xl group-hover:text-primary transition-colors">auto_mode</span>
+                        </div>
+                        <h5 class="text-xl font-bold text-charcoal mb-3">Deploy Agents</h5>
+                        <p class="text-slate-500 leading-relaxed text-sm"> Launch agents into your live environment.
+                            They begin in Review Mode to ensure total alignment. </p>
+                    </div>
+                    <div class="flex flex-col items-center md:items-start text-center md:text-left group reveal"
+                        style="transition-delay: 0.3s">
+                        <div
+                            class="w-20 h-20 bg-white border-2 border-charcoal/10 rounded-full flex items-center justify-center mb-7 group-hover:border-primary transition-colors duration-500 shadow-sm">
+                            <span
+                                class="material-symbols-outlined text-charcoal text-3xl group-hover:text-primary transition-colors">insights</span>
+                        </div>
+                        <h5 class="text-xl font-bold text-charcoal mb-3">Optimize</h5>
+                        <p class="text-slate-500 leading-relaxed text-sm"> Continuous learning algorithms refine
+                            processes based on your feedback and historical data. </p>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- CTA Banner -->
+        <div
+            class="mt-24 bg-charcoal rounded-3xl p-16 flex flex-col items-center text-center overflow-hidden relative reveal">
+            <div class="absolute inset-0 opacity-10">
+                <div
+                    class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,#135bec,transparent)]">
+                </div>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-5 relative z-10"> Ready to break the laws of
+                productivity? </h2>
+            <p class="text-slate-400 text-xl max-w-2xl mb-10 relative z-10 font-light leading-relaxed"> Early access
+                members receive priority deployment on all upcoming agents and lifetime preferential pricing. </p>
+            <div class="flex flex-col sm:flex-row gap-4 relative z-10"> <button onclick="openModal('signup-modal')"
+                    class="px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform btn-glass text-charcoal">
+                    Request Beta Access </button> <button
+                    onclick=" document .getElementById('roadmap') .scrollIntoView({ behavior: 'smooth' })"
+                    class="px-8 py-4 rounded-xl font-bold transition-colors backdrop-blur-sm btn-glass text-charcoal">
+                    View Full Roadmap </button> </div>
+        </div>
+    </div>
+</section>
+<!-- PRICING -->
+<section id="pricing" class="py-32 bg-bg-light">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-20 reveal">
+            <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-primary/60 mb-4"> Investment Structure </h2>
+            <h3 class="text-5xl font-bold tracking-tight text-charcoal mb-5"> Scalable Intelligence </h3>
+            <p class="mx-auto max-w-2xl text-lg leading-8 text-slate-600"> Transparent pricing designed to grow with
+                your business. From startups to global enterprises. </p>
+        </div>
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 max-w-5xl mx-auto">
+            <div
+                class="flex flex-col rounded-2xl border border-slate-200 bg-white p-8 transition-all hover:border-slate-300 hover:shadow-lg reveal">
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-charcoal"> Starter </h3>
+                    <p class="mt-2 text-sm text-slate-500"> Perfect for individuals and small teams. </p>
+                    <div class="mt-6 flex items-baseline gap-1"> <span
+                            class="text-4xl font-bold tracking-tight text-charcoal">$49</span><span
+                            class="text-sm font-semibold text-slate-500">/mo</span> </div>
+                </div>
+                <ul class="mb-8 flex flex-1 flex-col gap-4">
+                    <li class="flex items-center gap-3 text-sm text-slate-700"> <span
+                            class="material-symbols-outlined text-primary text-xl">check_circle</span>5 Autonomous
+                        Agents </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-700"> <span
+                            class="material-symbols-outlined text-primary text-xl">check_circle</span>Basic Neural
+                        Processing </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-700"> <span
+                            class="material-symbols-outlined text-primary text-xl">check_circle</span>Community Support
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-400"> <span
+                            class="material-symbols-outlined text-xl">block</span>Custom Integrations </li>
+                </ul> <button onclick="window.location.href='payment.html?plan=starter'"
+                    class="w-full rounded-xl py-3 text-sm font-bold text-charcoal transition-colors btn-glass text-charcoal">
+                    Start Free Trial </button>
+            </div>
+            <div
+                class="gold-glow relative flex flex-col rounded-2xl border-2 border-accent-gold/40 bg-white p-8 ring-1 ring-accent-gold/20 scale-105 z-10 reveal">
+                <div
+                    class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-accent-gold px-5 py-1 text-xs font-bold uppercase tracking-wider text-white">
+                    Most Popular </div>
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-charcoal"> Pro </h3>
+                    <p class="mt-2 text-sm text-slate-500"> For scaling organizations and power users. </p>
+                    <div class="mt-6 flex items-baseline gap-1"> <span
+                            class="text-4xl font-bold tracking-tight text-charcoal">$149</span><span
+                            class="text-sm font-semibold text-slate-500">/mo</span> </div>
+                </div>
+                <ul class="mb-8 flex flex-1 flex-col gap-4">
+                    <li class="flex items-center gap-3 text-sm text-slate-700"> <span
+                            class="material-symbols-outlined text-accent-gold text-xl">stars</span>25 Autonomous Agents
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-700"> <span
+                            class="material-symbols-outlined text-accent-gold text-xl">stars</span>Advanced Reasoning
+                        Core </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-700"> <span
+                            class="material-symbols-outlined text-accent-gold text-xl">stars</span>Priority 24/7 Support
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-700"> <span
+                            class="material-symbols-outlined text-accent-gold text-xl">stars</span>50+ Custom
+                        Integrations </li>
+                </ul> <button onclick="window.location.href='payment.html?plan=pro'"
+                    class="w-full rounded-xl py-3 text-sm font-bold transition-opacity btn-glass text-charcoal"> Go Pro
+                </button>
+            </div>
+            <div
+                class="flex flex-col rounded-2xl border border-slate-200 bg-white p-8 transition-all hover:border-slate-300 hover:shadow-lg reveal">
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-charcoal"> Enterprise </h3>
+                    <p class="mt-2 text-sm text-slate-500"> Bespoke solutions for global corporations. </p>
+                    <div class="mt-6 flex items-baseline gap-1"> <span
+                            class="text-4xl font-bold tracking-tight text-charcoal">Custom</span> </div>
+                </div>
+                <ul class="mb-8 flex flex-1 flex-col gap-4">
+                    <li class="flex items-center gap-3 text-sm text-slate-700"> <span
+                            class="material-symbols-outlined text-primary text-xl">check_circle</span>Unlimited Agents
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-700"> <span
+                            class="material-symbols-outlined text-primary text-xl">check_circle</span>On-Premise
+                        Deployment </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-700"> <span
+                            class="material-symbols-outlined text-primary text-xl">check_circle</span>Dedicated AI
+                        Architect </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-700"> <span
+                            class="material-symbols-outlined text-primary text-xl">check_circle</span>Custom SLA &
+                        Compliance </li>
+                </ul> <button onclick="window.location.href='payment.html?plan=enterprise'"
+                    class="w-full rounded-xl py-3 text-sm font-bold transition-colors bg-charcoal text-white hover:bg-charcoal/90">
+                    Contact Sales </button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ABOUT -->
+<section class="py-32 bg-cream">
+    <div class="max-w-5xl mx-auto px-6 text-center reveal"> <span
+            class="inline-block rounded-full bg-accent-gold/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-gold">Our
+            Ethos</span>
+        <h2 class="mt-10 text-4xl md:text-5xl font-medium leading-[1.2] text-charcoal lg:text-6xl"> To accelerate human
+            potential through the seamless integration of <span class="text-primary italic">autonomous
+                intelligence</span> into every business workflow on the planet. </h2>
+        <div class="mt-20 grid grid-cols-1 gap-12 text-left lg:grid-cols-3">
+            <div class="space-y-3 reveal">
+                <h4 class="text-xl font-bold">Autonomy</h4>
+                <p class="text-slate-600 leading-relaxed"> We believe in agents that don't just follow instructions, but
+                    understand goals and execute with precision. </p>
+            </div>
+            <div class="space-y-3 reveal" style="transition-delay: 0.1s">
+                <h4 class="text-xl font-bold">Safety</h4>
+                <p class="text-slate-600 leading-relaxed"> Built with enterprise-grade security and ethical guardrails
+                    that ensure AI remains a force for good. </p>
+            </div>
+            <div class="space-y-3 reveal" style="transition-delay: 0.2s">
+                <h4 class="text-xl font-bold">Integration</h4>
+                <p class="text-slate-600 leading-relaxed"> Fluid intelligence that lives where you work — across your
+                    existing stacks and platforms. </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- DEFY GRAVITY CTA -->
+<section class="py-24 bg-bg-light">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="rounded-3xl bg-charcoal p-16 overflow-hidden relative reveal">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[120px] rounded-full"> </div>
+            <div class="relative z-10 text-center">
+                <h2 class="text-3xl font-bold text-white lg:text-5xl mb-5"> Ready to defy gravity? </h2>
+                <p class="mx-auto mt-4 max-w-xl text-slate-400 mb-10"> Join over 500+ enterprises leveraging Automation
+                    Service to automate their future today. </p>
+                <div class="flex flex-wrap justify-center gap-4"> <button onclick="openModal('signup-modal')"
+                        class="rounded-xl px-8 py-4 font-bold transition-transform hover:-translate-y-1 bg-charcoal text-white hover:bg-charcoal/90">
+                        Get Started Now </button> <button onclick="openModal('demo-modal')"
+                        class="rounded-xl px-8 py-4 font-bold transition-colors btn-glass text-charcoal"> View
+                        Documentation </button> </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CONTACT -->
+<section id="contact" class="py-32 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-5"> Let's Build Your<br />Autonomous Future
+            </h2>
+            <p class="text-charcoal/55 text-lg md:text-xl max-w-2xl mx-auto"> Speak with our AI architects to deploy
+                custom agents that scale your enterprise operations effortlessly. </p>
+        </div>
+        <div class="grid md:grid-cols-12 gap-12 items-start">
+            <div class="md:col-span-4 space-y-8 reveal-left">
+                <div class="flex items-start gap-4">
+                    <div class="bg-charcoal/5 p-3 rounded-lg flex-shrink-0"> <span
+                            class="material-symbols-outlined text-charcoal">location_on</span> </div>
+                    <div>
+                        <h4 class="font-bold">Global Headquarters</h4>
+                        <p class="text-charcoal/55 text-sm"> One World Trade Center, New York, NY </p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="bg-charcoal/5 p-3 rounded-lg flex-shrink-0"> <span
+                            class="material-symbols-outlined text-charcoal">mail</span> </div>
+                    <div>
+                        <h4 class="font-bold">General Inquiries</h4>
+                        <p class="text-charcoal/55 text-sm"> hello@automationservice.com </p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="bg-charcoal/5 p-3 rounded-lg flex-shrink-0"> <span
+                            class="material-symbols-outlined text-charcoal">schedule</span> </div>
+                    <div>
+                        <h4 class="font-bold">Next Available Session</h4>
+                        <p class="text-charcoal/55 text-sm"> Tomorrow, 10:00 AM EST </p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-8 reveal-right">
+                <div class="glass border border-charcoal/10 rounded-2xl p-8 md:p-12 shadow-lg">
+                    <form id="contact-form" onsubmit="handleContactForm(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="space-y-2"> <label
+                                    class="text-xs font-bold uppercase tracking-wider text-charcoal/40 ml-1">First
+                                    Name</label><input
+                                    class="w-full bg-white/60 border border-charcoal/10 rounded-xl px-4 py-4 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all placeholder:text-charcoal/20"
+                                    placeholder="John" type="text" required /> </div>
+                            <div class="space-y-2"> <label
+                                    class="text-xs font-bold uppercase tracking-wider text-charcoal/40 ml-1">Last
+                                    Name</label><input
+                                    class="w-full bg-white/60 border border-charcoal/10 rounded-xl px-4 py-4 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all placeholder:text-charcoal/20"
+                                    placeholder="Doe" type="text" required /> </div>
+                        </div>
+                        <div class="space-y-2"> <label
+                                class="text-xs font-bold uppercase tracking-wider text-charcoal/40 ml-1">Work
+                                Email</label><input
+                                class="w-full bg-white/60 border border-charcoal/10 rounded-xl px-4 py-4 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all placeholder:text-charcoal/20"
+                                placeholder="john@company.com" type="email" required /> </div>
+                        <div class="space-y-2"> <label
+                                class="text-xs font-bold uppercase tracking-wider text-charcoal/40 ml-1">Company
+                                Size</label><select
+                                class="w-full bg-white/60 border border-charcoal/10 rounded-xl px-4 py-4 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all appearance-none">
+                                <option>1-50 employees</option>
+                                <option>51-200 employees</option>
+                                <option>201-1000 employees</option>
+                                <option>1000+ employees</option>
+                            </select> </div>
+                        <div class="space-y-2"> <label
+                                class="text-xs font-bold uppercase tracking-wider text-charcoal/40 ml-1">Message</label><textarea
+                                class="w-full bg-white/60 border border-charcoal/10 rounded-xl px-4 py-4 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all placeholder:text-charcoal/20"
+                                placeholder="How can we help automate your business?" rows="4"></textarea> </div>
+                        <button type="submit"
+                            class="w-full font-bold py-5 rounded-xl hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3 group bg-charcoal text-white hover:bg-charcoal/90 hover:shadow-lg">
+                            <span>Book Strategy Call</span><span
+                                class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                        <p class="text-center text-xs text-charcoal/35"> By submitting this form, you agree to our <a
+                                href="#" class="underline"> Privacy Policy </a> and <a href="#" class="underline"> Terms
+                                of Service </a> . </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- FOOTER -->
+<footer class="bg-white border-t border-charcoal/5 pt-20 pb-10 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-12 gap-12 mb-16">
+            <div class="col-span-2 md:col-span-4">
+                <div class="flex items-center gap-3 mb-5 text-charcoal">
+                    <div class="size-6 text-primary"> <img src="/swet.png" alt="SWET Logo" class="w-full h-full object-contain" /> </div> <span class="text-lg font-bold tracking-tight">SWET AI LABS</span>
+                </div>
+                <p class="text-charcoal/45 text-sm leading-relaxed max-w-xs mb-7"> The next evolution of enterprise
+                    intelligence. Autonomous agents designed for high-performance organizations. </p>
+                <div class="flex gap-3"> <a href="#"
+                        class="w-10 h-10 rounded-full bg-charcoal/5 flex items-center justify-center hover:bg-charcoal hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-lg">public</span> </a> <a href="#"
+                        class="w-10 h-10 rounded-full bg-charcoal/5 flex items-center justify-center hover:bg-charcoal hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-lg">share</span> </a> <a href="#"
+                        class="w-10 h-10 rounded-full bg-charcoal/5 flex items-center justify-center hover:bg-charcoal hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-lg">videocam</span> </a> </div>
+            </div>
+            <div class="col-span-1 md:col-span-2">
+                <h5 class="font-bold text-xs uppercase tracking-widest mb-5"> Platform </h5>
+                <ul class="space-y-3.5 text-sm text-charcoal/55">
+                    <li> <a class="hover:text-charcoal transition-colors" href="#services"> Core Engine </a> </li>
+                    <li> <a class="hover:text-charcoal transition-colors" href="#benefits"> Integrations </a> </li>
+                    <li> <a class="hover:text-charcoal transition-colors" href="#"> Security </a> </li>
+                    <li> <a class="hover:text-charcoal transition-colors" href="#"> Enterprise </a> </li>
+                </ul>
+            </div>
+            <div class="col-span-1 md:col-span-2">
+                <h5 class="font-bold text-xs uppercase tracking-widest mb-5"> Solutions </h5>
+                <ul class="space-y-3.5 text-sm text-charcoal/55">
+                    <li> <a class="hover:text-charcoal transition-colors" href="#"> Customer Ops </a> </li>
+                    <li> <a class="hover:text-charcoal transition-colors" href="#"> Finance AI </a> </li>
+                    <li> <a class="hover:text-charcoal transition-colors" href="#"> Supply Chain </a> </li>
+                    <li> <a class="hover:text-charcoal transition-colors" href="#"> Legal Automator </a> </li>
+                </ul>
+            </div>
+            <div class="col-span-1 md:col-span-2">
+                <h5 class="font-bold text-xs uppercase tracking-widest mb-5"> Company </h5>
+                <ul class="space-y-3.5 text-sm text-charcoal/55">
+                    <li> <a class="hover:text-charcoal transition-colors" href="#"> About Us </a> </li>
+                    <li> <a class="hover:text-charcoal transition-colors" href="#"> Careers </a> </li>
+                    <li> <a class="hover:text-charcoal transition-colors" href="#"> Press Kit </a> </li>
+                    <li> <a class="hover:text-charcoal transition-colors" href="#contact"> Contact </a> </li>
+                </ul>
+            </div>
+            <div class="col-span-1 md:col-span-2">
+                <h5 class="font-bold text-xs uppercase tracking-widest mb-5"> Newsletter </h5>
+                <p class="text-sm text-charcoal/55 leading-relaxed mb-4"> Stay updated on our latest agent releases.
+                </p>
+                <form onsubmit="handleNewsletterForm(event)" class="flex gap-2"> <input
+                        class="bg-bg-light border border-charcoal/10 rounded-lg text-sm px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-primary"
+                        placeholder="Email" type="email" /> <button type="submit"
+                        class="p-2 rounded-lg transition-colors text-charcoal"> <span
+                            class="material-symbols-outlined text-sm">send</span> </button> </form>
+            </div>
+        </div>
+        <div class="pt-8 border-t border-charcoal/5 flex flex-col md:flex-row justify-between items-center gap-5">
+            <p class="text-xs text-charcoal/35"> © 2026 SWET AI LABS All rights reserved. </p>
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="size-2 rounded-full bg-emerald-500 animate-pulse"> </div> <span
+                        class="text-xs font-medium text-charcoal/55">System Status: Optimal</span>
+                </div>
+                <div class="flex gap-6 text-xs font-medium text-charcoal/40"> <a href="#"
+                        class="hover:text-primary transition-colors"> Privacy </a> <a href="#"
+                        class="hover:text-primary transition-colors"> Terms </a> <a href="#"
+                        class="hover:text-primary transition-colors"> GDPR </a> </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- MODALS -->
+<div id="modal-backdrop" onclick="closeAllModals()"
+    class="fixed inset-0 bg-charcoal/50 backdrop-blur-sm z-[9990] hidden opacity-0 transition-opacity duration-300">
+</div>
+<!-- Login Modal -->
+<div id="login-modal"
+    class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-4 pointer-events-none opacity-0 transition-all duration-300 scale-95">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-10 pointer-events-auto">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-bold text-charcoal"> Welcome Back </h2> <button onclick="closeAllModals()"
+                class="/40 hover:"> <span class="material-symbols-outlined">close</span> </button>
+        </div>
+        <form onsubmit="handleFormSubmit(event,'login-modal','Logged in successfully! Taking you to your dashboard.')"
+            class="space-y-5">
+            <div> <label
+                    class="text-xs font-bold uppercase tracking-wider text-charcoal/40 block mb-1.5">Email</label><input
+                    type="email"
+                    class="w-full border border-charcoal/10 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                    placeholder="you@company.com" required /> </div>
+            <div> <label
+                    class="text-xs font-bold uppercase tracking-wider text-charcoal/40 block mb-1.5">Password</label><input
+                    type="password"
+                    class="w-full border border-charcoal/10 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                    placeholder="••••••••" required /> </div> <button type="submit"
+                class="w-full font-bold py-4 rounded-xl transition-all bg-charcoal text-white hover:bg-charcoal/90 hover:shadow-lg">
+                Sign In </button>
+            <p class="text-center text-sm text-charcoal/40"> No account? <button type="button"
+                    onclick="switchModal('login-modal','signup-modal')" class="text-primary font-bold"> Create one
+                </button> </p>
+        </form>
+    </div>
+</div>
+<!-- Signup Modal -->
+<div id="signup-modal"
+    class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-4 pointer-events-none opacity-0 transition-all duration-300 scale-95">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-10 pointer-events-auto">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-bold text-charcoal"> Get Started Free </h2> <button onclick="closeAllModals()"
+                class="/40 hover:"> <span class="material-symbols-outlined">close</span> </button>
+        </div>
+        <form
+            onsubmit="handleFormSubmit(event,'signup-modal','Account created! Check your email for a confirmation link.')"
+            class="space-y-5">
+            <div class="grid grid-cols-2 gap-4">
+                <div> <label class="text-xs font-bold uppercase tracking-wider text-charcoal/40 block mb-1.5">First
+                        Name</label><input type="text"
+                        class="w-full border border-charcoal/10 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                        placeholder="John" required /> </div>
+                <div> <label class="text-xs font-bold uppercase tracking-wider text-charcoal/40 block mb-1.5">Last
+                        Name</label><input type="text"
+                        class="w-full border border-charcoal/10 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                        placeholder="Doe" required /> </div>
+            </div>
+            <div> <label class="text-xs font-bold uppercase tracking-wider text-charcoal/40 block mb-1.5">Work
+                    Email</label><input type="email"
+                    class="w-full border border-charcoal/10 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                    placeholder="john@company.com" required /> </div>
+            <div> <label
+                    class="text-xs font-bold uppercase tracking-wider text-charcoal/40 block mb-1.5">Password</label><input
+                    type="password"
+                    class="w-full border border-charcoal/10 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                    placeholder="Min 8 characters" required /> </div> <button type="submit"
+                class="w-full font-bold py-4 rounded-xl hover:scale-[1.02] transition-all bg-charcoal text-white hover:bg-charcoal/90 hover:shadow-lg">
+                Create Free Account </button>
+            <p class="text-center text-sm text-charcoal/40"> Already have an account? <button type="button"
+                    onclick="switchModal('signup-modal','login-modal')" class="text-primary font-bold"> Sign in
+                </button> </p>
+        </form>
+    </div>
+</div>
+<!-- Demo Modal -->
+<div id="demo-modal"
+    class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-4 pointer-events-none opacity-0 transition-all duration-300 scale-95">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-10 pointer-events-auto">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-charcoal"> Watch Demo </h2> <button onclick="closeAllModals()"
+                class="/40 hover:"> <span class="material-symbols-outlined">close</span> </button>
+        </div>
+        <div class="bg-charcoal rounded-xl aspect-video flex flex-col items-center justify-center gap-4 mb-6"> <span
+                class="material-symbols-outlined text-6xl text-white/20">play_circle</span>
+            <p class="text-white/40 text-sm"> Demo video coming soon </p>
+        </div>
+        <p class="text-charcoal/55 mb-6"> Want a personalized walkthrough? Book a live session with an AI architect.
+        </p> <button onclick="switchModal('demo-modal','signup-modal')"
+            class="w-full font-bold py-4 rounded-xl transition-all"> Book Live Demo </button>
+    </div>
+</div>
+<!-- Waitlist Modal -->
+<div id="waitlist-modal"
+    class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-4 pointer-events-none opacity-0 transition-all duration-300 scale-95">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-10 pointer-events-auto">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-bold text-charcoal"> Join the Waitlist </h2> <button onclick="closeAllModals()"
+                class="/40 hover:"> <span class="material-symbols-outlined">close</span> </button>
+        </div>
+        <form
+            onsubmit="handleFormSubmit(event,'waitlist-modal','You have been added to the waitlist. We will reach out soon!')"
+            class="space-y-5">
+            <div> <label class="text-xs font-bold uppercase tracking-wider text-charcoal/40 block mb-1.5">Full
+                    Name</label><input type="text"
+                    class="w-full border border-charcoal/10 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                    placeholder="Your name" required /> </div>
+            <div> <label class="text-xs font-bold uppercase tracking-wider text-charcoal/40 block mb-1.5">Work
+                    Email</label><input type="email"
+                    class="w-full border border-charcoal/10 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                    placeholder="you@company.com" required /> </div> <button type="submit"
+                class="w-full font-bold py-4 rounded-xl transition-all bg-charcoal text-white hover:bg-charcoal/90 hover:shadow-lg">
+                Join Waitlist </button>
+        </form>
+    </div>
+</div>
+<!-- Contact Sales Modal -->
+<div id="contact-modal"
+    class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-4 pointer-events-none opacity-0 transition-all duration-300 scale-95">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-10 pointer-events-auto">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-bold text-charcoal"> Contact Sales </h2> <button onclick="closeAllModals()"
+                class="/40 hover:"> <span class="material-symbols-outlined">close</span> </button>
+        </div>
+        <form
+            onsubmit="handleFormSubmit(event,'contact-modal','Message sent! Our enterprise team will contact you within 24 hours.')"
+            class="space-y-5">
+            <div> <label class="text-xs font-bold uppercase tracking-wider text-charcoal/40 block mb-1.5">Company
+                    Name</label><input type="text"
+                    class="w-full border border-charcoal/10 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                    placeholder="Acme Corp" required /> </div>
+            <div> <label class="text-xs font-bold uppercase tracking-wider text-charcoal/40 block mb-1.5">Work
+                    Email</label><input type="email"
+                    class="w-full border border-charcoal/10 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                    placeholder="you@company.com" required /> </div>
+            <div> <label class="text-xs font-bold uppercase tracking-wider text-charcoal/40 block mb-1.5">Team
+                    Size</label><select
+                    class="w-full border border-charcoal/10 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all appearance-none">
+                    <option>201-1000 employees</option>
+                    <option>1000+ employees</option>
+                </select> </div> <button type="submit"
+                class="w-full font-bold py-4 rounded-xl hover:scale-[1.02] transition-all bg-charcoal text-white hover:bg-charcoal/90 hover:shadow-lg">
+                Talk to Enterprise Sales </button>
+        </form>
+    </div>
+</div>
+<!-- Toast Notification -->
+<div id="toast"
+    class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[99999] bg-charcoal text-white px-6 py-4 rounded-xl shadow-2xl text-sm font-medium flex items-center gap-3 translate-y-20 opacity-0 transition-all duration-500 max-w-sm text-center">
+    <span class="material-symbols-outlined text-emerald-400 flex-shrink-0">check_circle</span> <span
+        id="toast-msg"></span>
+</div>
+<script src="script.js">
+</script>
+<script src="comets.js">
+</script>
+
+<!-- Preloader Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const preloader = document.getElementById('premium-preloader');
+        if (!preloader) return;
+
+        // Check if already visited 
+        if (sessionStorage.getItem('ag_visited_premium')) {
+            preloader.style.display = 'none';
+            return;
+        }
+
+        document.body.classList.add('no-scroll');
+
+        const container = document.getElementById('preloader-canvas-container');
+        const preloaderUi = document.getElementById('preloader-ui');
+        const btnWrapper = document.getElementById('preloader-btn-wrapper');
+        const enterBtn = document.getElementById('preloader-enter-btn');
+
+        // --- THREE.JS SETUP ---
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0xebf0ea, 0.02); // matches gradient outer slightly
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 15;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        // --- LIGHTING ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+
+        const blueLight = new THREE.PointLight(0x6366f1, 2, 20); 
+        blueLight.position.set(-2, 0, 2);
+        scene.add(blueLight);
+        
+        const whiteLight = new THREE.PointLight(0xffffff, 1.5, 20); 
+        whiteLight.position.set(2, 2, 2);
+        scene.add(whiteLight);
+
+        // --- SPHERE (AI CORE) ---
+        const sphereGroup = new THREE.Group();
+        scene.add(sphereGroup);
+
+        // Main glass sphere
+        const sphereGeo = new THREE.IcosahedronGeometry(2.5, 6); 
+        const glassMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff,
+            metalness: 0.1,
+            roughness: 0.05,
+            transmission: 0.9, 
+            thickness: 1.5,
+            transparent: true,
+            opacity: 1,
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.1
+        });
+        const mainSphere = new THREE.Mesh(sphereGeo, glassMaterial);
+        sphereGroup.add(mainSphere);
+
+        // Inner glowing core
+        const coreGeo = new THREE.IcosahedronGeometry(1.4, 3);
+        const coreMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x818cf8, 
+            wireframe: true,
+            transparent: true,
+            opacity: 0.4
+        });
+        const coreMesh = new THREE.Mesh(coreGeo, coreMaterial);
+        sphereGroup.add(coreMesh);
+        
+        // Inner solid core
+        const solidCoreGeo = new THREE.IcosahedronGeometry(1.0, 4);
+        const solidCoreMat = new THREE.MeshStandardMaterial({
+            color: 0xf8fafc,
+            emissive: 0x6366f1,
+            emissiveIntensity: 0.5,
+            roughness: 0.2
+        });
+        const solidCore = new THREE.Mesh(solidCoreGeo, solidCoreMat);
+        sphereGroup.add(solidCore);
+
+        // --- PARTICLES / COMET TRAIL ---
+        const particleGeo = new THREE.BufferGeometry();
+        const particleCount = 300;
+        const posArray = new Float32Array(particleCount * 3);
+
+        for(let i=0; i < particleCount * 3; i+=3) {
+            const r = 3.5 + Math.random() * 2.5;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos((Math.random() * 2) - 1);
+            
+            posArray[i] = r * Math.sin(phi) * Math.cos(theta);
+            posArray[i+1] = r * Math.sin(phi) * Math.sin(theta);
+            posArray[i+2] = r * Math.cos(phi);
+        }
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        
+        const particleMat = new THREE.PointsMaterial({
+            size: 0.04,
+            color: 0x6366f1,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+        const particleMesh = new THREE.Points(particleGeo, particleMat);
+        scene.add(particleMesh);
+
+        // Orbiting rings
+        const ringGeo = new THREE.TorusGeometry(3.8, 0.015, 16, 100);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x818cf8, transparent: true, opacity: 0.4 });
+        const ring1 = new THREE.Mesh(ringGeo, ringMat);
+        ring1.rotation.x = Math.PI / 2.2;
+        ring1.rotation.y = Math.PI / 6;
+        scene.add(ring1);
+        
+        const ring2 = new THREE.Mesh(ringGeo, ringMat);
+        ring2.rotation.x = Math.PI / 1.8;
+        ring2.rotation.y = -Math.PI / 6;
+        ring2.scale.set(1.1, 1.1, 1.1);
+        scene.add(ring2);
+
+        // --- ANIMATION LOOP ---
+        let clock = new THREE.Clock();
+        let isExiting = false;
+        let animationId;
+
+        // Variables for smoothed exit animation
+        let targetZ = 15;
+        let targetFov = 45;
+        let currentWarpSpeed = 0;
+
+        function animate() {
+            animationId = requestAnimationFrame(animate);
+            const delta = clock.getDelta();
+            const elapsedTime = clock.getElapsedTime();
+
+            // Float effect
+            sphereGroup.position.y = Math.sin(elapsedTime * 1.5) * 0.2;
+            
+            // Default Rotations
+            mainSphere.rotation.y += 0.15 * delta;
+            mainSphere.rotation.z += 0.05 * delta;
+            
+            coreMesh.rotation.y -= 0.4 * delta;
+            coreMesh.rotation.x += 0.2 * delta;
+            
+            solidCore.rotation.y += 0.5 * delta;
+            
+            particleMesh.rotation.y += 0.1 * delta;
+            particleMesh.rotation.z -= 0.05 * delta;
+
+            ring1.rotation.z -= 0.2 * delta;
+            ring2.rotation.z += 0.15 * delta;
+
+            if (isExiting) {
+                // Smooth Fade Out & gentle scale up combined with Warp effect
+                const scaleSpeed = 1.0 + (0.5 * delta); // gentle expansion
+
+                // Scale up everything gently
+                sphereGroup.scale.multiplyScalar(scaleSpeed);
+                particleMesh.scale.multiplyScalar(scaleSpeed);
+                ring1.scale.multiplyScalar(scaleSpeed);
+                ring2.scale.multiplyScalar(scaleSpeed);
+
+                // Spin the rings and sphere faster
+                sphereGroup.rotation.y += 2.0 * delta;
+                ring1.rotation.z -= 4.0 * delta;
+                ring2.rotation.z += 4.0 * delta;
+
+                // Warp the camera into the sphere
+                targetZ = 0.5;
+                targetFov = 110;
+                camera.position.z += (targetZ - camera.position.z) * 3.5 * delta;
+                camera.fov += (targetFov - camera.fov) * 4.0 * delta;
+                camera.updateProjectionMatrix();
+
+                // Warp the particles towards camera
+                currentWarpSpeed += (12.0 - currentWarpSpeed) * 2.0 * delta;
+                const positions = particleGeo.attributes.position.array;
+                for(let i=0; i<positions.length; i+=3) {
+                    positions[i+2] += currentWarpSpeed * delta; 
+                }
+                particleGeo.attributes.position.needsUpdate = true;
+
+                // Increase core glow temporarily before fade
+                solidCoreMat.emissiveIntensity += (2.5 - solidCoreMat.emissiveIntensity) * 4.0 * delta;
+
+                // Fade out all materials smoothly
+                glassMaterial.opacity = Math.max(0, glassMaterial.opacity - 1.2 * delta);
+                coreMaterial.opacity = Math.max(0, coreMaterial.opacity - 1.2 * delta);
+                solidCoreMat.opacity = Math.max(0, solidCoreMat.opacity - 1.2 * delta);
+                solidCoreMat.transparent = true;
+                
+                particleMat.opacity = Math.max(0, particleMat.opacity - 1.2 * delta);
+                ring1.material.opacity = Math.max(0, ring1.material.opacity - 1.2 * delta);
+                ring2.material.opacity = Math.max(0, ring2.material.opacity - 1.2 * delta);
+            }
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // --- TIMELINE ---
+        setTimeout(() => {
+            preloaderUi.classList.remove('opacity-0');
+        }, 1500);
+
+        setTimeout(() => {
+            btnWrapper.classList.remove('opacity-0', 'translate-y-4');
+        }, 2500);
+
+        // --- INTERACTION / EXIT ---
+        enterBtn.addEventListener('click', () => {
+            if (isExiting) return; // Prevent multiple clicks
+            isExiting = true;
+            
+            // Fade out UI smoothly
+            preloaderUi.style.opacity = '0';
+            
+            // Smoothly remove background color from container so main site starts to show
+            preloader.style.background = 'transparent';
+
+            setTimeout(() => {
+                // Now fade out the entire preloader container to fully reveal main site
+                preloader.style.opacity = '0';
+                
+                setTimeout(() => {
+                    cancelAnimationFrame(animationId);
+                    
+                    // clean up WebGL
+                    scene.traverse(object => {
+                        if (object.isMesh || object.isPoints) {
+                            object.geometry.dispose();
+                            object.material.dispose();
+                        }
+                    });
+                    renderer.dispose();
+                    
+                    preloader.remove();
+                    document.body.classList.remove('no-scroll');
+                    sessionStorage.setItem('ag_visited_premium', 'true');
+                }, 1000); // Wait for opacity transition
+            }, 500); // 0.5s after click, full container fades
+        });
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    });
+</script>
+</body>
+
+</html>
